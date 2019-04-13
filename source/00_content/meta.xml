@@ -4,12 +4,10 @@
 	<url>https://blip.kummerlaender.eu</url>
 	<author>Adrian Kummerländer</author>
 	<description>Notable commits, quick notes and small updates on my various projects</description>
-	<timeline>
-		<commit_count>32</commit_count>
-	</timeline>
-	<overview>
-		<article_count>3</article_count>
-		<commit_count>16</commit_count>
-	</overview>
+	<limits>
+		<display>32</display>
+		<feed>16</feed>
+		<raw>8</raw>
+	</limits>
 	<repository_base>https://code.kummerlaender.eu</repository_base>
 </datasource>

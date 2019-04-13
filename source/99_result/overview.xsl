@@ -135,12 +135,12 @@
 						<a href="https://tree.kummerlaender.eu/projects">Projects</a>
 					</li>
 					<li>
-						<a href="{$root/meta/url}/timeline.xml">Feed</a>
+						<a href="{$root/meta/url}/atom.xml">Feed</a>
 					</li>
 				</ul>
 			</div>
 
-			<xsl:apply-templates select="timeline/entry[position() &lt;= $root/meta/overview/commit_count]"/>
+			<xsl:apply-templates select="timeline/entry[position() &lt;= $root/meta/limits/display]"/>
 		</div>
 	</body>
 </html>
