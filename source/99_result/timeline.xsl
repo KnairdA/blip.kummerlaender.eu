@@ -24,7 +24,7 @@
 <xsl:variable name="url"    select="concat($root/meta/url, '/timeline.xml')"/>
 
 <xsl:template match="timeline/entry">
-	<xsl:variable name="link" select="concat($root/meta/repository_base, '/', @repo, '/commits/?id=', @hash)"/>
+	<xsl:variable name="link" select="concat($root/meta/repository_base, '/', @repo, '/commit/?id=', @hash)"/>
 	
 	<entry xmlns="http://www.w3.org/2005/Atom">
 		<id>
@@ -33,7 +33,7 @@
 		<title>
 			<xsl:value-of select="title"/>
 		</title>
-		<link rel="alternate" title="{title}" href="$link"/>
+		<link rel="alternate" title="{title}" href="{$link}"/>
 		<author>
 			<name>
 				<xsl:value-of select="$root/meta/author"/>
