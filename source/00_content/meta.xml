@@ -5,7 +5,7 @@
 	<author>Adrian Kummerländer</author>
 	<description>Notable commits, quick notes and small updates on my various projects</description>
 	<limits>
-		<display>32</display>
+		<display>6</display>
 		<feed>16</feed>
 		<raw>8</raw>
 	</limits>

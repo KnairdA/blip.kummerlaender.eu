@@ -14,6 +14,7 @@
 	indent="no"
 />
 
+<xsl:include href="[utility/master.xsl]"/>
 <xsl:include href="[utility/xhtml.xsl]"/>
 <xsl:include href="[utility/date-time.xsl]"/>
 
@@ -24,7 +25,9 @@
 	<target     mode="plain"   value="index.html"/>
 </xsl:variable>
 
-<xsl:variable name="root" select="/datasource"/>
+<xsl:template name="title-text">
+	<xsl:text>Page 0</xsl:text>
+</xsl:template>
 
 <xsl:template match="timeline/entry">
 	<h3>
@@ -87,63 +90,19 @@
 	</p>
 </xsl:template>
 
-<xsl:template match="datasource">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<meta name="author"      content="{$root/meta/author}"/>
-		<meta name="description" content="{$root/meta/description}"/>
-		<meta name="viewport"    content="width=device-width,initial-scale=1.0"/>
+<xsl:template match="timeline">
+	<div>
+		<xsl:apply-templates select="entry[position() &lt;= $root/meta/limits/display]"/>
+	</div>
 
-		<title>
-			<xsl:value-of select="$root/meta/title"/>
-		</title>
+	<div id="pagination">
+		<span>
+			<a class="pagination-next" href="/1">
+				<xsl:text>older »</xsl:text>
+			</a>
+		</span>
+	</div>
 
-		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-		<link rel="stylesheet"    type="text/css"     href="/main.css"/>
-	</head>
-	<body>
-		<div id="content">
-			<div class="large menuhead">
-				<h1>
-					<xsl:value-of select="$root/meta/title"/>
-				</h1>
-				<ul>
-					<li>
-						<a href="https://blog.kummerlaender.eu">blog</a>
-					</li>
-					<li>
-						<a href="https://code.kummerlaender.eu">code</a>
-					</li>
-					<li>
-						<a href="https://tree.kummerlaender.eu">tree</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="normal menuhead">
-				<h2>
-					<a href="{$root/meta/repository_base}">
-						<xsl:text>Selected commits</xsl:text>
-					</a>
-				</h2>
-				<ul>
-					<li>
-						<a href="https://github.com/KnairdA">GitHub</a>
-					</li>
-					<li>
-						<a href="https://tree.kummerlaender.eu/projects">Projects</a>
-					</li>
-					<li>
-						<a href="{$root/meta/url}/atom.xml">Feed</a>
-					</li>
-				</ul>
-			</div>
-
-			<xsl:apply-templates select="timeline/entry[position() &lt;= $root/meta/limits/display]"/>
-		</div>
-	</body>
-</html>
 </xsl:template>
 
 <xsl:template match="a[@class = 'footnote-ref']" mode="xhtml">
@@ -155,7 +114,5 @@
 		<xsl:apply-templates select="node()" mode="xhtml"/>
 	</xsl:element>
 </xsl:template>
-
-<xsl:template match="text()|@*"/>
 
 </xsl:stylesheet>
