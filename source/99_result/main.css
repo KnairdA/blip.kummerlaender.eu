@@ -22,6 +22,8 @@ pre{font-family:monospace;padding:1em;border-radius:.75em;color:#f8f8f2;backgrou
 code{font-family:monospace;margin:0 .1em;padding:0 .5em;border:.1em solid #e3e8e8;background-color:#f8f8f8;border-radius:.3em}
 sup{vertical-align:baseline;position:relative;top:-0.6em}
 sub{vertical-align:baseline;position:relative;top:0.4em}
+p.math{padding:0.5em;line-height:0;text-align:center}
+span.math{line-height:0}
 
 #content{max-width:45em;margin:auto}
 #introduction{margin-top:1.5em;overflow:hidden}
