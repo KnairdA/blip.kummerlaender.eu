@@ -7,7 +7,7 @@
 <xsl:include href="[utility/datasource.xsl]"/>
 
 <xsl:variable name="meta">
-	<datasource type="main"    mode="full" source="03_merge/timeline.xml" target="timeline"/>
+	<datasource type="main"    mode="full" source="03_sort/timeline.xml" target="timeline"/>
 	<datasource type="support" mode="full" source="00_content/meta.xml"   target="meta"/>
 	<target     mode="plain" value="paginated_timeline.xml"/>
 </xsl:variable>

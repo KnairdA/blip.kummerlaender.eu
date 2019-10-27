@@ -7,18 +7,18 @@
 <xsl:include href="[utility/datasource.xsl]"/>
 
 <xsl:variable name="meta">
-	<datasource type="main" mode="full" source="01_raw/commits.xml" target="timeline"/>
+	<datasource type="main"    mode="full" source="02_merge/timeline.xml" target="timeline"/>
 	<target     mode="plain" value="timeline.xml"/>
 </xsl:variable>
 
-<xsl:template match="@* | node()" mode="commit">
+<xsl:template match="@* | node()" mode="copy">
 	<xsl:copy>
-		<xsl:apply-templates select="@* | node()" mode="commit"/>
+		<xsl:apply-templates select="@* | node()" mode="copy"/>
 	</xsl:copy>
 </xsl:template>
 
 <xsl:template match="timeline">
-	<xsl:apply-templates select="entry" mode="commit">
+	<xsl:apply-templates select="entry" mode="copy">
 		<xsl:sort select="date"       data-type="text" order="descending"/>
 		<xsl:sort select="date/@time" data-type="text" order="descending"/>
 	</xsl:apply-templates>

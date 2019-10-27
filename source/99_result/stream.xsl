@@ -12,7 +12,7 @@
 <xsl:variable name="meta">
 	<datasource type="main"    mode="iterate" source="04_meta/paginated_timeline.xml" target="page"/>
 	<datasource type="support" mode="full"    source="00_content/meta.xml"            target="meta"/>
-	<datasource type="support" mode="full"    source="03_merge/timeline.xml"          target="timeline"/>
+	<datasource type="support" mode="full"    source="03_sort/timeline.xml"          target="timeline"/>
 	<target     mode="xpath"   value="concat($datasource/page/entry/@index, '/index.html')"/>
 </xsl:variable>
 

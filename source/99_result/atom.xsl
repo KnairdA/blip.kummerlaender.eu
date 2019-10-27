@@ -15,15 +15,15 @@
 <xsl:include href="[utility/xhtml.xsl]"/>
 
 <xsl:variable name="meta">
-	<datasource type="main"    mode="full" source="03_merge/timeline.xml"  target="timeline"/>
-	<datasource type="support" mode="full" source="00_content/meta.xml"    target="meta"/>
+	<datasource type="main"    mode="full" source="03_sort/timeline.xml"  target="timeline"/>
+	<datasource type="support" mode="full" source="00_content/meta.xml"   target="meta"/>
 	<target     mode="plain"   value="atom.xml"/>
 </xsl:variable>
 
 <xsl:variable name="root"   select="/datasource"/>
 <xsl:variable name="url"    select="concat($root/meta/url, '/atom.xml')"/>
 
-<xsl:template match="timeline/entry">
+<xsl:template match="timeline/entry[@type='commit']">
 	<xsl:variable name="link" select="concat($root/meta/repository_base, '/', @repo, '/commit/?id=', @hash)"/>
 	
 	<entry xmlns="http://www.w3.org/2005/Atom">
@@ -34,6 +34,34 @@
 			<xsl:value-of select="title"/>
 		</title>
 		<link rel="alternate" title="{title}" href="{$link}"/>
+		<author>
+			<name>
+				<xsl:value-of select="$root/meta/author"/>
+			</name>
+		</author>
+		<updated>
+			<xsl:value-of select="date"/>
+			<xsl:text>T</xsl:text>
+			<xsl:value-of select="date/@time"/>
+			<xsl:text>:00+02:00</xsl:text>
+		</updated>
+		<content type="xhtml">
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<xsl:apply-templates select="content/*" mode="xhtml"/>
+			</div>
+		</content>
+	</entry>
+</xsl:template>
+
+<xsl:template match="timeline/entry[@type='unstructured']">
+	<entry xmlns="http://www.w3.org/2005/Atom">
+		<id>
+			<xsl:value-of select="title/@href"/>
+		</id>
+		<title>
+			<xsl:value-of select="title"/>
+		</title>
+		<link rel="alternate" title="{title/text()}" href="{title/@href}"/>
 		<author>
 			<name>
 				<xsl:value-of select="$root/meta/author"/>
